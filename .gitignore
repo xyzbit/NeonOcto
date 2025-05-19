@@ -23,3 +23,29 @@ go.work.sum
 
 # env file
 .env
+
+# 操作系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器临时文件
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 开发环境
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# 构建产物
+dist/
+build/
+.tmp/
+
+# 其他
+*.log
+.env.local

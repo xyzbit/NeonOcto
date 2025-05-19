@@ -1,0 +1,33 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    rect {
+      shape-rendering: crispEdges;
+    }
+  </style>
+  
+  <!-- 背景网格 -->
+  <rect x="8" y="8" width="32" height="32" fill="#000000" />
+  <rect x="12" y="12" width="4" height="4" fill="#2d2d2d" />
+  <rect x="20" y="12" width="4" height="4" fill="#2d2d2d" />
+  <rect x="28" y="12" width="4" height="4" fill="#2d2d2d" />
+  <rect x="12" y="20" width="4" height="4" fill="#2d2d2d" />
+  <rect x="20" y="20" width="4" height="4" fill="#2d2d2d" />
+  <rect x="28" y="20" width="4" height="4" fill="#2d2d2d" />
+  <rect x="12" y="28" width="4" height="4" fill="#2d2d2d" />
+  <rect x="20" y="28" width="4" height="4" fill="#2d2d2d" />
+  <rect x="28" y="28" width="4" height="4" fill="#2d2d2d" />
+  
+  <!-- 光晕效果 -->
+  <rect x="20" y="4" width="8" height="4" fill="#7e57c2" />
+  <rect x="16" y="8" width="16" height="4" fill="#7e57c2" />
+  <rect x="12" y="12" width="24" height="4" fill="#7e57c2" opacity="0.7" />
+  
+  <!-- 未来城市轮廓 -->
+  <rect x="14" y="22" width="4" height="14" fill="#4a90e2" />
+  <rect x="22" y="18" width="4" height="18" fill="#4a90e2" />
+  <rect x="30" y="24" width="4" height="12" fill="#4a90e2" />
+  
+  <!-- 飞行器 -->
+  <rect x="26" y="16" width="8" height="2" fill="#ff6b6b" />
+  <rect x="28" y="14" width="4" height="2" fill="#ffd700" />
+</svg> 

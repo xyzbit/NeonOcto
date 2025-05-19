@@ -1,0 +1,26 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    rect {
+      shape-rendering: crispEdges;
+    }
+  </style>
+  
+  <!-- 火山主体 -->
+  <rect x="12" y="28" width="24" height="12" fill="#4a4a4a" />
+  <rect x="16" y="24" width="16" height="4" fill="#4a4a4a" />
+  <rect x="20" y="16" width="8" height="8" fill="#4a4a4a" />
+  
+  <!-- 火山口 -->
+  <rect x="20" y="20" width="8" height="4" fill="#ff6b6b" />
+  <rect x="16" y="24" width="16" height="4" fill="#ff6b6b" />
+  
+  <!-- 喷发的岩浆 -->
+  <rect x="22" y="8" width="4" height="4" fill="#ff6b6b" />
+  <rect x="22" y="12" width="4" height="4" fill="#ffd700" />
+  
+  <!-- 引擎喷射 -->
+  <rect x="16" y="36" width="4" height="4" fill="#ffd700" />
+  <rect x="28" y="36" width="4" height="4" fill="#ffd700" />
+  <rect x="16" y="40" width="4" height="2" fill="#ff6b6b" />
+  <rect x="28" y="40" width="4" height="2" fill="#ff6b6b" />
+</svg> 
