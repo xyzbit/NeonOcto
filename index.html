@@ -17,9 +17,9 @@
                 <img src="assets/icons/cursor.svg" alt="Cursor" class="pixel-icon" />
             </div>
             <ul class="menu">
-                <li class="active" data-icon="cursor.svg">Cursor</li>
-                <li data-icon="volc.svg">火山引擎</li>
-                <li data-icon="future.svg">未来平台</li>
+                <li class="active" data-icon="cursor.svg">首页</li>
+                <li class="disabled" data-icon="volc.svg">知识库</li>
+                <li class="disabled" data-icon="future.svg">设置</li>
             </ul>
         </div>
 
@@ -54,6 +54,9 @@
                         <span>3</span>
                         <span>4</span>
                         <span>5</span>
+                        <span>6</span>
+                        <span>7</span>
+                        <span>8</span>
                     </div>
                     <textarea placeholder="在这里输入提示词...支持Markdown格式"></textarea>
                 </div>
@@ -152,35 +155,34 @@
         </div>
     </div>
 
-    <!-- 测试用例对比界面 (默认隐藏) -->
-    <div class="comparison-modal" style="display: none;">
-        <div class="modal-header">
-            <h2>提示词对比</h2>
-            <div class="modal-actions">
-                <button class="pixel-btn">💾 保存版本</button>
-                <button class="pixel-btn">🔄 重新对比</button>
-                <span class="close-btn">✕</span>
-            </div>
-        </div>
-        <div class="modal-content">
-            <div class="comparison-container">
-                <div class="original-version">
-                    <h3>原始版本</h3>
-                    <pre>生成一个查询用户数据的SQL语句</pre>
-                </div>
-                <div class="optimized-version">
-                    <h3>优化版本</h3>
-                    <pre>生成一个查询用户数据的SQL语句，<span class="highlight">请确保使用索引并添加错误处理</span></pre>
+    <!-- 版本对比区域（默认隐藏） -->
+    <div class="versions-comparison" style="display: none;">
+        <div class="comparison-header">
+            <h2>提示词优化版本</h2>
+            <div class="comparison-mode">
+                <span>对比模式：</span>
+                <div class="mode-switch">
+                    <button class="mode-btn active" data-mode="initial">初版对比</button>
+                    <button class="mode-btn" data-mode="incremental">增量对比</button>
                 </div>
             </div>
+            <button class="close-comparison-btn">✕</button>
         </div>
-        <div class="modal-footer">
-            <div class="version-nav">
-                <span>版本1</span>
-                <span class="nav-arrows">↔</span>
-                <span>版本2</span>
+
+        <div class="versions-slider">
+            <div class="slider-controls">
+                <button class="slider-btn prev-btn">◀</button>
+                <div class="slider-indicator">版本 <span class="current-version">1</span> / <span
+                        class="total-versions">3</span></div>
+                <button class="slider-btn next-btn">▶</button>
             </div>
-            <div class="keyboard-hint">使用 Ctrl+[ / Ctrl+] 切换版本</div>
+
+            <div class="versions-container">
+                <!-- 版本卡片容器 -->
+                <div class="version-cards">
+                    <!-- 版本卡片将通过JavaScript动态生成 -->
+                </div>
+            </div>
         </div>
     </div>
 
