@@ -1,0 +1,47 @@
+/* 基础样式 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 15, 15;
+  --background-end-rgb: 5, 5, 5;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  min-height: 100vh;
+}
+
+/* 暗色模式支持 */
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 0, 0, 0;
+}
+
+/* 移除输入框自动填充样式 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #252525 inset !important;
+  -webkit-text-fill-color: #9F7AEA !important;
+}
+
+/* 表单元素样式重置 */
+textarea:focus, input:focus, select:focus {
+  outline: none;
+}
+
+/* 锐利边缘渲染 */
+* {
+  image-rendering: pixelated;
+  text-rendering: geometricPrecision;
+} 
