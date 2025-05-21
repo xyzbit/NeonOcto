@@ -3,16 +3,16 @@
     class="h-full flex flex-col p-4 overflow-auto bg-gradient-to-b from-[#151515] to-[#101010] dark:from-[#0d0d0d] dark:to-[#080808]">
     <!-- 添加页面标题 -->
     <div class="flex items-center mb-6">
-      <h2 class="text-xl text-purple-400">快速优化</h2>
+      <h2 class="text-xl text-purple-400 pixel-text-lg">快速优化</h2>
     </div>
 
     <!-- 平台和模型选择栏 -->
     <div
       class="flex items-center gap-4 mb-4 p-3 bg-[#1a1a1a] dark:bg-[#121212] border border-[#2a2a2a] dark:border-[#333333] rounded-lg">
       <div class="flex items-center gap-2">
-        <span class="text-sm text-purple-300">模拟平台:</span>
+        <span class="text-sm text-purple-300 pixel-text-sm">模拟平台:</span>
         <select v-model="selectedPlatform"
-          class="w-[140px] h-8 text-xs bg-[#252525] border-[#333333] text-purple-200 rounded-md">
+          class="w-[140px] h-8 text-xs bg-[#252525] border-[#333333] text-purple-200 rounded-md pixel-text-sm">
           <option value="openai">OpenAI</option>
           <option value="anthropic">Anthropic</option>
           <option value="google">Google</option>
@@ -20,9 +20,9 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="text-sm text-purple-300">优化模型:</span>
+        <span class="text-sm text-purple-300 pixel-text-sm">优化模型:</span>
         <select v-model="optimizationModel"
-          class="w-[140px] h-8 text-xs bg-[#252525] border-[#333333] text-purple-200 rounded-md">
+          class="w-[140px] h-8 text-xs bg-[#252525] border-[#333333] text-purple-200 rounded-md pixel-text-sm">
           <option value="gemini">Gemini</option>
           <option value="gpt4">GPT-4</option>
           <option value="claude">Claude</option>
@@ -30,9 +30,9 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <span class="text-sm text-purple-300">回复模型:</span>
+        <span class="text-sm text-purple-300 pixel-text-sm">回复模型:</span>
         <select v-model="responseModel"
-          class="w-[140px] h-8 text-xs bg-[#252525] border-[#333333] text-purple-200 rounded-md">
+          class="w-[140px] h-8 text-xs bg-[#252525] border-[#333333] text-purple-200 rounded-md pixel-text-sm">
           <option value="gpt4">GPT-4</option>
           <option value="gpt35">GPT-3.5</option>
           <option value="claude">Claude</option>
@@ -47,9 +47,9 @@
       <div class="border border-[#2a2a2a] dark:border-[#333333] bg-[#1a1a1a] dark:bg-[#121212] shadow-lg rounded-lg">
         <div class="p-3">
           <div class="flex justify-between items-center mb-2">
-            <h3 class="text-sm text-blue-400">原始提示</h3>
+            <h3 class="text-sm text-blue-400 pixel-text-sm">原始提示</h3>
             <div class="bg-blue-900/30 border border-blue-500/30 px-2 py-0.5 rounded-md">
-              <span class="text-[10px] text-blue-300">INPUT</span>
+              <span class="text-[10px] text-blue-300 pixel-text-sm">INPUT</span>
             </div>
           </div>
           <textarea v-model="originalPrompt" placeholder="输入您的原始提示..."
@@ -61,9 +61,9 @@
       <div class="border border-[#2a2a2a] dark:border-[#333333] bg-[#1a1a1a] dark:bg-[#121212] shadow-lg rounded-lg">
         <div class="p-3">
           <div class="flex justify-between items-center mb-2">
-            <h3 class="text-sm text-green-400">优化后提示</h3>
+            <h3 class="text-sm text-green-400 pixel-text-sm">优化后提示</h3>
             <div class="bg-green-900/30 border border-green-500/30 px-2 py-0.5 rounded-md">
-              <span class="text-[10px] text-green-300">OUTPUT</span>
+              <span class="text-[10px] text-green-300 pixel-text-sm">OUTPUT</span>
             </div>
           </div>
           <textarea v-model="optimizedPrompt" placeholder="优化后的提示将显示在这里..." readonly
@@ -83,7 +83,7 @@
     <div
       class="flex justify-between items-center mb-4 p-3 bg-[#1a1a1a] dark:bg-[#121212] border border-[#2a2a2a] dark:border-[#333333] rounded-lg">
       <div class="flex items-center gap-2 flex-1 max-w-[500px]">
-        <span class="text-sm text-purple-300 whitespace-nowrap">优化要求:</span>
+        <span class="text-sm text-purple-300 whitespace-nowrap pixel-text-sm">优化要求:</span>
         <input v-model="optimizationRequirements" placeholder="输入特定的优化要求，不填则应用通用规则..."
           class="text-sm flex-1 bg-[#252525] border-[#333333] text-purple-200 rounded-md p-2" />
       </div>
@@ -91,7 +91,7 @@
       <div class="flex gap-2">
         <button @click="handleOptimize" :disabled="!originalPrompt || isOptimizing"
           class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-          <span v-if="isOptimizing" class="mr-2">
+          <span v-if="isOptimizing" class="mr-2 pixel-text-sm">
             <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor"
@@ -99,7 +99,7 @@
               </path>
             </svg>
           </span>
-          <span v-else class="mr-2">
+          <span v-else class="mr-2 pixel-text-sm">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M15 4V2"></path>
@@ -135,9 +135,9 @@
     <div v-if="optimizedPrompt"
       class="border border-[#2a2a2a] dark:border-[#333333] bg-[#1a1a1a] dark:bg-[#121212] shadow-lg rounded-lg p-3">
       <div class="flex justify-between items-center mb-3">
-        <h3 class="text-purple-400">测试问题</h3>
+        <h3 class="text-purple-400 pixel-text-lg">测试问题</h3>
         <div class="bg-purple-900/30 border border-purple-500/30 px-2 py-0.5 rounded-md">
-          <span class="text-[10px] text-purple-300">TEST</span>
+          <span class="text-[10px] text-purple-300 pixel-text-sm">TEST</span>
         </div>
       </div>
 
@@ -173,7 +173,7 @@
         <!-- 原始提示回复 -->
         <div class="border border-[#333333] rounded-lg p-3">
           <div class="flex justify-between items-center mb-2">
-            <h4 class="text-blue-400">原始提示回复</h4>
+            <h4 class="text-blue-400 pixel-text-sm">原始提示回复</h4>
             <div class="flex items-center gap-1">
               <button @click="setResponseFeedback('original', 'thumbsUp', !originalThumbsUp)" :class="[
                 'h-6 w-6 rounded-md flex items-center justify-center',
@@ -209,7 +209,7 @@
             </svg>
           </div>
           <div v-else class="text-sm text-blue-200 whitespace-pre-line bg-[#252525] p-3 rounded-md">{{ originalResponse
-          }}</div>
+            }}</div>
 
           <div v-if="originalThumbsDown" class="mt-2">
             <textarea v-model="originalFeedback" placeholder="请提供改进建议..."
@@ -220,7 +220,7 @@
         <!-- 优化后提示回复 -->
         <div class="border border-[#333333] rounded-lg p-3">
           <div class="flex justify-between items-center mb-2">
-            <h4 class="text-green-400">优化后提示回复</h4>
+            <h4 class="text-green-400 pixel-text-sm">优化后提示回复</h4>
             <div class="flex items-center gap-1">
               <button @click="setResponseFeedback('optimized', 'thumbsUp', !optimizedThumbsUp)" :class="[
                 'h-6 w-6 rounded-md flex items-center justify-center',

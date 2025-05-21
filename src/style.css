@@ -2,11 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 导入像素风格字体 */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap');
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 15, 15, 15;
   --background-end-rgb: 5, 5, 5;
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* 使用更易读的像素风格字体 */
+  font-family: 'VT323', 'Share Tech Mono', monospace;
+  font-size: 16px;
   line-height: 1.5;
   font-weight: 400;
   font-synthesis: none;
@@ -17,14 +28,65 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-    to bottom,
-    rgb(var(--background-start-rgb)),
-    rgb(var(--background-end-rgb))
-  );
+  background: linear-gradient(to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb)));
   min-height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+/* 标题使用像素风格 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Press Start 2P', monospace;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  margin-bottom: 1em;
+}
+
+/* 标题尺寸调整，确保可读性 */
+h1 {
+  font-size: 1.6rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1rem;
+}
+
+/* 确保正文内容可读性 */
+p,
+span,
+div,
+button,
+input,
+select,
+textarea {
+  font-family: 'VT323', 'Share Tech Mono', monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+/* 强调文本使用更强的像素风格 */
+strong,
+b,
+.emphasized {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9em;
 }
 
 /* 暗色模式支持 */
@@ -44,7 +106,9 @@ input:-webkit-autofill:active {
 }
 
 /* 表单元素样式重置 */
-textarea:focus, input:focus, select:focus {
+textarea:focus,
+input:focus,
+select:focus {
   outline: none;
 }
 
@@ -54,6 +118,23 @@ textarea:focus, input:focus, select:focus {
   text-rendering: geometricPrecision;
 }
 
+/* 添加像素效果辅助类 */
+.pixel-text-sm {
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.5px;
+}
+
+.pixel-text-md {
+  font-family: 'Share Tech Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.pixel-text-lg {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
 #app {
   @apply min-h-screen w-full;
 }
@@ -61,12 +142,13 @@ textarea:focus, input:focus, select:focus {
 @layer components {
   .btn {
     @apply px-4 py-2 rounded-md transition-colors;
+    font-family: 'Share Tech Mono', monospace;
   }
-  
+
   .btn-primary {
     @apply bg-neon-primary text-white hover:bg-opacity-90;
   }
-  
+
   .card {
     @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-4;
   }
