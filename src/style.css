@@ -1,15 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* 导入像素风格字体 */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap');
 
-@font-face {
-  font-family: 'Press Start 2P';
-  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
-  font-display: swap;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --foreground-rgb: 255, 255, 255;
