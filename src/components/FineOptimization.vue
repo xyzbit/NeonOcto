@@ -61,8 +61,7 @@
               </div>
 
               <div class="flex gap-2">
-                <button @click="createNewVersion"
-                  class="h-7 text-xs bg-purple-900 hover:bg-purple-800 text-purple-100 rounded-md px-2 flex items-center">
+                <button @click="createNewVersion" class="btn btn-sm btn-primary btn-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" width="24" height="24"
                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round">
@@ -94,8 +93,7 @@
           <div class="p-3">
             <div class="flex justify-between items-center mb-2">
               <h3 class="text-sm text-blue-400">测试用例</h3>
-              <button @click="addTestCase"
-                class="h-7 text-xs bg-blue-900 hover:bg-blue-800 text-blue-100 rounded-md px-2 flex items-center">
+              <button @click="addTestCase" class="btn btn-sm btn-secondary btn-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-1" width="24" height="24" viewBox="0 0 24 24"
                   fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 5v14M5 12h14"></path>
@@ -133,7 +131,7 @@
           <div class="flex justify-between items-center mb-2">
             <h3 class="text-sm text-green-400">测试结果</h3>
             <button @click="startOptimization" :disabled="isOptimizing || testCases.some(tc => !tc.question)"
-              class="h-7 text-xs bg-green-900 hover:bg-green-800 text-green-100 rounded-md px-2 flex items-center disabled:opacity-50">
+              class="btn btn-sm btn-success btn-icon">
               <span v-if="isOptimizing" class="mr-1">
                 <svg class="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

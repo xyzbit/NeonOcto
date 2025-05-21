@@ -68,14 +68,13 @@
             </div>
           </div>
 
-          <router-link to="/optimization"
-            class="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium rounded-lg inline-flex items-center justify-center whitespace-nowrap shadow-lg shadow-purple-700/20 transition-all duration-300 backdrop-blur-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" width="24" height="24" viewBox="0 0 24 24"
+          <router-link to="/optimization" class="btn btn-lg btn-primary btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" width="24" height="24" viewBox="0 0 24 24"
               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
             </svg>
             开始使用
-            <span class="ml-1 text-[10px] font-mono opacity-80">⌘+O</span>
+            <span class="ml-1 text-[9px] font-mono opacity-80">⌘+O</span>
           </router-link>
         </div>
       </div>

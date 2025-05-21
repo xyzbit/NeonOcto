@@ -89,19 +89,18 @@
       </div>
 
       <div class="flex gap-2">
-        <button @click="handleOptimize" :disabled="!originalPrompt || isOptimizing"
-          class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
-          <span v-if="isOptimizing" class="mr-2 pixel-text-sm">
-            <svg class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <button @click="handleOptimize" :disabled="!originalPrompt || isOptimizing" class="btn btn-primary btn-icon">
+          <span v-if="isOptimizing" class="mr-1">
+            <svg class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
               <path class="opacity-75" fill="currentColor"
                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
               </path>
             </svg>
           </span>
-          <span v-else class="mr-2 pixel-text-sm">
+          <span v-else class="mr-1">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
               <path d="M15 4V2"></path>
               <path d="M15 22v-2"></path>
               <path d="M8 22v-2"></path>
@@ -117,10 +116,10 @@
           {{ isOptimizing ? '优化中...' : '优化提示' }}
         </button>
 
-        <button v-if="optimizedPrompt" @click="continueOptimization"
-          class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md flex items-center gap-2">
+        <button v-if="optimizedPrompt" @click="continueOptimization" class="btn btn-secondary btn-icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2">
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="h-3.5 w-3.5 mr-1">
             <polyline points="17 1 21 5 17 9"></polyline>
             <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
             <polyline points="7 23 3 19 7 15"></polyline>
@@ -129,6 +128,26 @@
           继续优化
         </button>
       </div>
+
+      <!-- 开始对比按钮 -->
+      <button @click="handleCompare" :disabled="!testQuestion || isComparing" class="btn btn-primary btn-icon">
+        <span v-if="isComparing" class="mr-1">
+          <svg class="animate-spin h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+            </path>
+          </svg>
+        </span>
+        <span v-else class="mr-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" width="24" height="24" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="8 9 12 5 16 9"></polyline>
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+          </svg>
+        </span>
+        {{ isComparing ? '对比中...' : '开始对比' }}
+      </button>
     </div>
 
     <!-- 测试区域 -->
@@ -209,7 +228,7 @@
             </svg>
           </div>
           <div v-else class="text-sm text-blue-200 whitespace-pre-line bg-[#252525] p-3 rounded-md">{{ originalResponse
-            }}</div>
+          }}</div>
 
           <div v-if="originalThumbsDown" class="mt-2">
             <textarea v-model="originalFeedback" placeholder="请提供改进建议..."
