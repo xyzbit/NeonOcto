@@ -9,6 +9,19 @@ import './style.css'
 // 再导入像素风格样式
 import './assets/pixel-style.css'
 
+// 添加字体样式
+const fontStyles = document.createElement('link')
+fontStyles.rel = 'stylesheet'
+fontStyles.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap'
+document.head.appendChild(fontStyles)
+
+// 添加字体预加载
+const fontPreload = document.createElement('link')
+fontPreload.rel = 'preload'
+fontPreload.as = 'style'
+fontPreload.href = fontStyles.href
+document.head.appendChild(fontPreload)
+
 // 扩展HTMLElement类型
 interface TooltipElement extends HTMLElement {
     _tooltip?: HTMLElement;

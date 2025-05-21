@@ -53,7 +53,7 @@
             </div>
           </div>
           <textarea v-model="originalPrompt" placeholder="输入您的原始提示..."
-            class="min-h-[200px] w-full text-sm bg-[#252525] border-[#333333] text-blue-200 font-mono resize-none focus:ring-blue-500/50 focus:border-blue-500/50 rounded-md"></textarea>
+            class="min-h-[200px] w-full text-sm pixel-input"></textarea>
         </div>
       </div>
 
@@ -66,8 +66,9 @@
               <span class="text-[10px] text-green-300 pixel-text-sm">OUTPUT</span>
             </div>
           </div>
-          <textarea v-model="optimizedPrompt" placeholder="优化后的提示将显示在这里..." readonly
-            class="min-h-[200px] w-full text-sm bg-[#252525] border-[#333333] text-green-200 font-mono resize-none focus:ring-green-500/50 focus:border-green-500/50 rounded-md"></textarea>
+          <div class="min-h-[200px] w-full text-sm pixel-output" :class="{ 'typing': isOptimizing }">
+            <div>{{ displayedOutput }}</div>
+          </div>
 
           <div v-if="optimizedPrompt" class="mt-4">
             <div class="text-sm text-green-400">应用的优化要求</div>
@@ -228,7 +229,7 @@
             </svg>
           </div>
           <div v-else class="text-sm text-blue-200 whitespace-pre-line bg-[#252525] p-3 rounded-md">{{ originalResponse
-          }}</div>
+            }}</div>
 
           <div v-if="originalThumbsDown" class="mt-2">
             <textarea v-model="originalFeedback" placeholder="请提供改进建议..."
@@ -288,7 +289,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
 // 模型和平台选择
 const selectedPlatform = ref('openai')
@@ -317,20 +318,37 @@ const optimizedThumbsUp = ref(false)
 const optimizedThumbsDown = ref(false)
 const optimizedFeedback = ref('')
 
+// 用于流式输出的显示文本
+const displayedOutput = ref('')
+
 // 处理优化
 const handleOptimize = () => {
   isOptimizing.value = true
+  displayedOutput.value = ''
+
   // 模拟优化过程
   setTimeout(() => {
-    optimizedPrompt.value =
-      "已优化的提示：" +
+    const result = "已优化的提示：" +
       originalPrompt.value +
       "\n\n" +
       (optimizationRequirements.value || "应用通用优化规则") +
       "\n\n" +
       "1. 更清晰的指令\n2. 更精确的上下文\n3. 更好的格式化"
-    isOptimizing.value = false
-  }, 1500)
+
+    optimizedPrompt.value = result
+
+    // 实现流式输出效果
+    let currentIndex = 0
+    const outputInterval = setInterval(() => {
+      if (currentIndex <= result.length) {
+        displayedOutput.value = result.slice(0, currentIndex)
+        currentIndex++
+      } else {
+        clearInterval(outputInterval)
+        isOptimizing.value = false
+      }
+    }, 30) // 每30ms输出一个字符
+  }, 1000)
 }
 
 // 处理对比
@@ -342,20 +360,37 @@ const handleCompare = () => {
   optimizedResponse.value = ''
 
   // 模拟原始响应
-  setTimeout(() => {
-    originalResponse.value = "这是使用原始提示生成的回复。可能不够清晰或结构化。"
+  let originalText = "这是使用原始提示生成的回复。可能不够清晰或结构化。"
+  let currentIndex = 0
 
-    // 模拟优化后响应
-    setTimeout(() => {
-      optimizedResponse.value =
-        "这是使用优化后提示生成的回复：\n\n" +
-        "1. 更清晰的结构\n" +
-        "2. 更精确的回答\n" +
-        "3. 更好的格式化\n\n" +
-        "希望这个回答对您有所帮助！"
-      isComparing.value = false
-    }, 1500)
-  }, 1500)
+  const originalInterval = setInterval(() => {
+    if (currentIndex <= originalText.length) {
+      originalResponse.value = originalText.slice(0, currentIndex)
+      currentIndex++
+    } else {
+      clearInterval(originalInterval)
+
+      // 开始优化后的响应
+      setTimeout(() => {
+        let optimizedText = "这是使用优化后提示生成的回复：\n\n" +
+          "1. 更清晰的结构\n" +
+          "2. 更精确的回答\n" +
+          "3. 更好的格式化\n\n" +
+          "希望这个回答对您有所帮助！"
+
+        let optimizedIndex = 0
+        const optimizedInterval = setInterval(() => {
+          if (optimizedIndex <= optimizedText.length) {
+            optimizedResponse.value = optimizedText.slice(0, optimizedIndex)
+            optimizedIndex++
+          } else {
+            clearInterval(optimizedInterval)
+            isComparing.value = false
+          }
+        }, 30)
+      }, 500)
+    }
+  }, 30)
 }
 
 // 继续优化
@@ -391,4 +426,19 @@ const setResponseFeedback = (type: 'original' | 'optimized', feedback: 'thumbsUp
 
 <style scoped>
 /* 特定组件样式 */
+.pixel-input,
+.pixel-output {
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.pixel-output {
+  transition: all 0.3s ease;
+}
+
+.pixel-output.typing {
+  border-color: rgba(74, 222, 128, 0.5);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+}
 </style>

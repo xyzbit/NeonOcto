@@ -83,7 +83,7 @@
             <!-- 编辑器 -->
             <div class="flex-1 relative overflow-hidden">
               <textarea v-model="systemPrompt" placeholder="输入系统提示词..."
-                class="w-full h-full resize-none bg-[#252525] border-[#333333] text-purple-200 font-mono p-2 rounded-md focus:ring-purple-500/50 focus:border-purple-500/50"></textarea>
+                class="w-full h-full resize-none pixel-input"></textarea>
             </div>
           </div>
         </div>
@@ -116,7 +116,7 @@
                   </button>
                 </div>
                 <textarea v-model="testCase.question" placeholder="输入测试问题..."
-                  class="w-full h-20 resize-none bg-[#1f1f1f] border-[#333333] text-blue-200 font-mono p-2 text-sm rounded-md focus:ring-blue-500/50 focus:border-blue-500/50"
+                  class="w-full h-20 resize-none pixel-input"
                   @input="updateTestCase(testCase.id, $event.target.value)"></textarea>
               </div>
             </div>
@@ -214,14 +214,14 @@
                   </div>
                 </div>
 
-                <div class="mt-2 p-3 bg-[#1f1f1f] rounded-md text-sm text-green-200 whitespace-pre-line">
-                  {{ response.response }}
+                <div class="mt-2 p-3 bg-[#1f1f1f] rounded-md text-sm text-green-200 whitespace-pre-line pixel-output"
+                  :class="{ 'typing': isOptimizing }">
+                  <div>{{ response.displayedResponse }}</div>
                 </div>
 
                 <div v-if="response.thumbsDown" class="mt-2">
                   <textarea v-model="response.feedback" placeholder="请提供改进建议..."
-                    class="w-full h-20 resize-none bg-[#1f1f1f] border-[#333333] text-red-200 font-mono p-2 text-sm rounded-md focus:ring-red-500/50 focus:border-red-500/50"
-                    @input="setResponseFeedback(response.id, 'feedback', $event.target.value)"></textarea>
+                    class="w-full h-20 resize-none pixel-input"></textarea>
                 </div>
               </div>
             </div>
@@ -253,6 +253,7 @@ interface Response {
   versionId: number
   question: string
   response: string
+  displayedResponse: string
   feedback: string
   thumbsUp: boolean
   thumbsDown: boolean
@@ -325,20 +326,40 @@ function startOptimization() {
 
   // 模拟优化过程
   setTimeout(() => {
-    const newResponses = testCases.value.map(tc => ({
-      id: Date.now() + tc.id,
-      testCaseId: tc.id,
-      versionId: activeVersion.value,
-      question: tc.question,
-      response: `这是对测试用例 "${tc.question.substring(0, 20)}${tc.question.length > 20 ? '...' : ''}" 的回复。\n\n这是版本 ${activeVersion.value} 的系统提示生成的回复。`,
-      feedback: '',
-      thumbsUp: false,
-      thumbsDown: false
-    }))
+    const newResponses = testCases.value.map(tc => {
+      const responseText = `这是对测试用例 "${tc.question.substring(0, 20)}${tc.question.length > 20 ? '...' : ''}" 的回复。\n\n这是版本 ${activeVersion.value} 的系统提示生成的回复。`
+
+      return {
+        id: Date.now() + tc.id,
+        testCaseId: tc.id,
+        versionId: activeVersion.value,
+        question: tc.question,
+        response: responseText,
+        displayedResponse: '',
+        feedback: '',
+        thumbsUp: false,
+        thumbsDown: false
+      }
+    })
 
     responses.value = [...responses.value, ...newResponses]
+
+    // 为每个新响应实现流式输出
+    newResponses.forEach(response => {
+      let currentIndex = 0
+      const outputInterval = setInterval(() => {
+        const targetResponse = responses.value.find(r => r.id === response.id)
+        if (targetResponse && currentIndex <= response.response.length) {
+          targetResponse.displayedResponse = response.response.slice(0, currentIndex)
+          currentIndex++
+        } else {
+          clearInterval(outputInterval)
+        }
+      }, 30)
+    })
+
     isOptimizing.value = false
-  }, 2000)
+  }, 1000)
 }
 
 // 设置响应反馈
@@ -403,4 +424,19 @@ watch(activeVersion, (newVersion) => {
 
 <style scoped>
 /* 特定组件样式 */
+.pixel-input,
+.pixel-output {
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.pixel-output {
+  transition: all 0.3s ease;
+}
+
+.pixel-output.typing {
+  border-color: rgba(74, 222, 128, 0.5);
+  box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+}
 </style>
