@@ -15,17 +15,21 @@
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 15, 15, 15;
   --background-end-rgb: 5, 5, 5;
-  /* 使用更易读的像素风格字体 */
-  font-family: 'VT323', 'Share Tech Mono', monospace;
+
+  /* 基础字体设置 */
+  font-family: 'VT323', monospace;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
+
+  /* 优化字体渲染 */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 基础文本样式 */
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom,
@@ -36,7 +40,7 @@ body {
   padding: 0;
 }
 
-/* 标题使用像素风格 */
+/* 标题样式 */
 h1,
 h2,
 h3,
@@ -45,21 +49,21 @@ h5,
 h6 {
   font-family: 'Press Start 2P', monospace;
   line-height: 1.4;
-  letter-spacing: 0.5px;
-  margin-bottom: 1em;
+  letter-spacing: 1px;
+  margin-bottom: 1.5em;
 }
 
-/* 标题尺寸调整，确保可读性 */
+/* 标题大小调整 */
 h1 {
-  font-size: 1.6rem;
+  font-size: 1.75rem;
 }
 
 h2 {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
 }
 
 h4,
@@ -68,25 +72,76 @@ h6 {
   font-size: 1rem;
 }
 
-/* 确保正文内容可读性 */
-p,
-span,
-div,
+/* 正文文本样式 */
+p {
+  font-family: 'VT323', monospace;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  margin-bottom: 1em;
+}
+
+/* 按钮和交互元素 */
 button,
+.btn,
+a.btn,
+input[type="button"],
+input[type="submit"] {
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* 表单元素 */
 input,
-select,
-textarea {
-  font-family: 'VT323', 'Share Tech Mono', monospace;
-  font-size: 1.1rem;
+textarea,
+select {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
   letter-spacing: 0.5px;
 }
 
-/* 强调文本使用更强的像素风格 */
+/* 代码和技术文本 */
+code,
+pre,
+.code {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+/* 强调文本 */
 strong,
 b,
 .emphasized {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+/* 辅助文本 */
+small,
+.small-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+}
+
+/* 像素风格工具类 */
+.pixel-text {
+  font-family: 'Press Start 2P', monospace !important;
+  letter-spacing: 1px;
+}
+
+.pixel-text-body {
+  font-family: 'VT323', monospace !important;
+  letter-spacing: 0.5px;
+}
+
+.pixel-text-mono {
+  font-family: 'Share Tech Mono', monospace !important;
+  letter-spacing: 0.5px;
 }
 
 /* 暗色模式支持 */
@@ -96,53 +151,40 @@ b,
   --background-end-rgb: 0, 0, 0;
 }
 
-/* 移除输入框自动填充样式 */
+/* 表单元素样式重置和优化 */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #252525 inset !important;
   -webkit-text-fill-color: #9F7AEA !important;
+  font-family: 'Share Tech Mono', monospace !important;
 }
 
-/* 表单元素样式重置 */
+/* 表单元素焦点样式 */
 textarea:focus,
 input:focus,
 select:focus {
   outline: none;
 }
 
-/* 锐利边缘渲染 */
+/* 确保像素完美渲染 */
 * {
   image-rendering: pixelated;
   text-rendering: geometricPrecision;
 }
 
-/* 添加像素效果辅助类 */
-.pixel-text-sm {
-  font-family: 'VT323', monospace;
-  letter-spacing: 0.5px;
-}
-
-.pixel-text-md {
-  font-family: 'Share Tech Mono', monospace;
-  letter-spacing: 0.5px;
-}
-
-.pixel-text-lg {
-  font-family: 'Press Start 2P', monospace;
-  letter-spacing: 0.5px;
-  line-height: 1.4;
-}
-
+/* Vue 应用根元素 */
 #app {
   @apply min-h-screen w-full;
 }
 
+/* Tailwind 组件扩展 */
 @layer components {
   .btn {
     @apply px-4 py-2 rounded-md transition-colors;
-    font-family: 'Share Tech Mono', monospace;
+    font-family: 'VT323', monospace;
+    letter-spacing: 1px;
   }
 
   .btn-primary {
@@ -151,5 +193,10 @@ select:focus {
 
   .card {
     @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-4;
+  }
+
+  .input {
+    @apply bg-gray-800 border border-gray-700 rounded-md px-3 py-2;
+    font-family: 'Share Tech Mono', monospace;
   }
 }

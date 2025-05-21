@@ -81,12 +81,6 @@ function applyTheme() {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: 'Press Start 2P';
-  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
-  font-display: swap;
-}
-
 .font-pixel {
   font-family: 'Press Start 2P', monospace;
 }
