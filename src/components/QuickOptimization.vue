@@ -289,7 +289,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 // 模型和平台选择
 const selectedPlatform = ref('openai')

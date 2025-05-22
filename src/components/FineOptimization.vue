@@ -117,7 +117,7 @@
                 </div>
                 <textarea v-model="testCase.question" placeholder="输入测试问题..."
                   class="w-full h-20 resize-none pixel-input"
-                  @input="updateTestCase(testCase.id, $event.target.value)"></textarea>
+                  @input="updateTestCase(testCase.id, ($event.target as HTMLTextAreaElement).value)"></textarea>
               </div>
             </div>
           </div>

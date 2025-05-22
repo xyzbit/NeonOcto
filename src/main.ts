@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import type { Directive, DirectiveBinding as VueDirectiveBinding } from 'vue'
+import type { DirectiveBinding as VueDirectiveBinding } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'

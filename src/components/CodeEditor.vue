@@ -102,7 +102,7 @@ function handleKeydown(event: KeyboardEvent, lineIndex: number) {
 
     // 焦点设置到新行（这需要在DOM更新后进行）
     setTimeout(() => {
-      const newLineElement = event.target?.parentElement?.nextElementSibling?.lastElementChild as HTMLElement
+      const newLineElement = (event.target as HTMLElement)?.parentElement?.nextElementSibling?.lastElementChild as HTMLElement
       if (newLineElement) {
         newLineElement.focus()
         // 将光标放在开头

@@ -17,7 +17,7 @@
 import { ref, computed } from 'vue'
 import '../assets/io-effects.css'
 
-const props = defineProps<{
+defineProps<{
     placeholder?: string
 }>()
 
