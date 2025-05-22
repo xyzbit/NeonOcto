@@ -1,0 +1,205 @@
+/* 像素风格全局样式 */
+
+/* 像素字体导入 */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* 像素风格类 */
+.pixel-font {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: 0.5px;
+}
+
+.pixel-border {
+  position: relative;
+  box-shadow:
+    -3px 0 0 0 #805AD5,
+    3px 0 0 0 #805AD5,
+    0 -3px 0 0 #805AD5,
+    0 3px 0 0 #805AD5;
+}
+
+.pixel-border-sm {
+  position: relative;
+  box-shadow:
+    -2px 0 0 0 #805AD5,
+    2px 0 0 0 #805AD5,
+    0 -2px 0 0 #805AD5,
+    0 2px 0 0 #805AD5;
+}
+
+.pixel-button {
+  position: relative;
+  border: none;
+  background: linear-gradient(45deg, #805AD5, #6B46C1);
+  color: white;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  transform: translate(0, 0);
+  transition: transform 0.05s linear;
+  box-shadow:
+    -3px 0 0 0 #4A3490,
+    3px 0 0 0 #4A3490,
+    0 -3px 0 0 #4A3490,
+    0 3px 0 0 #4A3490;
+}
+
+.pixel-button:hover:not(:disabled) {
+  background: linear-gradient(45deg, #9F7AEA, #805AD5);
+}
+
+.pixel-button:active:not(:disabled) {
+  transform: translate(0, 3px);
+  box-shadow:
+    -3px 0 0 0 #4A3490,
+    3px 0 0 0 #4A3490,
+    0 -3px 0 0 #4A3490,
+    0 0 0 0 #4A3490;
+}
+
+.pixel-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pixel-input {
+  background-color: #252525;
+  color: #9F7AEA;
+  border: none;
+  outline: none;
+  padding: 0.75rem;
+  font-family: monospace;
+  box-shadow:
+    inset -2px 0 0 0 #4A3490,
+    inset 2px 0 0 0 #4A3490,
+    inset 0 -2px 0 0 #4A3490,
+    inset 0 2px 0 0 #4A3490;
+}
+
+.pixel-card {
+  background-color: #1a1a1a;
+  position: relative;
+  box-shadow:
+    -4px 0 0 0 #4A3490,
+    4px 0 0 0 #4A3490,
+    0 -4px 0 0 #4A3490,
+    0 4px 0 0 #4A3490;
+}
+
+/* 像素装饰元素 */
+.pixel-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: #805AD5;
+}
+
+.pixel-dot-tl {
+  top: 0;
+  left: 0;
+}
+
+.pixel-dot-tr {
+  top: 0;
+  right: 0;
+}
+
+.pixel-dot-bl {
+  bottom: 0;
+  left: 0;
+}
+
+.pixel-dot-br {
+  bottom: 0;
+  right: 0;
+}
+
+/* 霓虹灯效果 */
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 5px #fff,
+    0 0 10px #805AD5,
+    0 0 15px #805AD5,
+    0 0 20px #805AD5,
+    0 0 25px #805AD5;
+}
+
+.neon-border {
+  position: relative;
+  border: 2px solid #805AD5;
+  box-shadow:
+    0 0 5px #805AD5,
+    0 0 10px #805AD5,
+    inset 0 0 5px #805AD5;
+}
+
+/* 像素风格的滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-left: 2px solid #4A3490;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4A3490;
+  border: 2px solid #805AD5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #805AD5;
+}
+
+/* 动画效果 */
+.pixel-blink {
+  animation: blink 1s infinite step-end;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.pixel-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.pixel-scan::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to bottom,
+      transparent,
+      transparent 50%,
+      rgba(128, 90, 213, 0.1) 50%,
+      rgba(128, 90, 213, 0.1));
+  background-size: 100% 4px;
+  animation: scan 2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100px);
+  }
+}

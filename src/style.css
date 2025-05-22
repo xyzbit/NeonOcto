@@ -1,0 +1,580 @@
+/* 导入像素风格字体 */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Share+Tech+Mono&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 15, 15, 15;
+  --background-end-rgb: 5, 5, 5;
+
+  /* 基础字体设置 */
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: 400;
+
+  /* 优化字体渲染 */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 基础文本样式 */
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb)));
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* 标题样式 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Press Start 2P', monospace;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  margin-bottom: 1.5em;
+}
+
+/* 标题大小调整 */
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1rem;
+}
+
+/* 正文文本样式 */
+p {
+  font-family: 'VT323', monospace;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  margin-bottom: 1em;
+}
+
+/* 按钮和交互元素 */
+button,
+.btn,
+a.btn,
+input[type="button"],
+input[type="submit"] {
+  font-family: 'VT323', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 表单元素 */
+input,
+textarea,
+select {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* 代码和技术文本 */
+code,
+pre,
+.code {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+/* 强调文本 */
+strong,
+b,
+.emphasized {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.9em;
+  letter-spacing: 0.5px;
+}
+
+/* 辅助文本 */
+small,
+.small-text {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+}
+
+/* 像素风格工具类 */
+.pixel-text {
+  font-family: 'Press Start 2P', monospace !important;
+  letter-spacing: 1px;
+}
+
+.pixel-text-body {
+  font-family: 'VT323', monospace !important;
+  letter-spacing: 0.5px;
+}
+
+.pixel-text-mono {
+  font-family: 'Share Tech Mono', monospace !important;
+  letter-spacing: 0.5px;
+}
+
+/* 暗色模式支持 */
+.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 10, 10, 10;
+  --background-end-rgb: 0, 0, 0;
+}
+
+/* 表单元素样式重置和优化 */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #252525 inset !important;
+  -webkit-text-fill-color: #9F7AEA !important;
+  font-family: 'Share Tech Mono', monospace !important;
+}
+
+/* 表单元素焦点样式 */
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
+}
+
+/* 确保像素完美渲染 */
+* {
+  image-rendering: pixelated;
+  text-rendering: geometricPrecision;
+}
+
+/* Vue 应用根元素 */
+#app {
+  @apply min-h-screen w-full;
+}
+
+/* Tailwind 组件扩展 */
+@layer components {
+  .btn {
+    @apply px-3 py-1.5 rounded-md transition-colors relative overflow-hidden;
+    font-family: 'VT323', monospace;
+    letter-spacing: 0.5px;
+    image-rendering: pixelated;
+  }
+
+  .btn::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300;
+  }
+
+  .btn:hover::before {
+    @apply opacity-20;
+  }
+
+  .btn-primary {
+    @apply bg-purple-600 text-white border-2 border-purple-500;
+    box-shadow:
+      0 0 0 2px rgba(168, 85, 247, 0.1),
+      0 0 10px rgba(168, 85, 247, 0.2),
+      inset 0 0 6px rgba(168, 85, 247, 0.3);
+  }
+
+  .btn-primary:hover {
+    @apply bg-purple-700 border-purple-400;
+    box-shadow:
+      0 0 0 2px rgba(168, 85, 247, 0.2),
+      0 0 15px rgba(168, 85, 247, 0.3),
+      inset 0 0 8px rgba(168, 85, 247, 0.4);
+  }
+
+  .btn-secondary {
+    @apply bg-blue-600 text-white border-2 border-blue-500;
+    box-shadow:
+      0 0 0 2px rgba(59, 130, 246, 0.1),
+      0 0 10px rgba(59, 130, 246, 0.2),
+      inset 0 0 6px rgba(59, 130, 246, 0.3);
+  }
+
+  .btn-secondary:hover {
+    @apply bg-blue-700 border-blue-400;
+    box-shadow:
+      0 0 0 2px rgba(59, 130, 246, 0.2),
+      0 0 15px rgba(59, 130, 246, 0.3),
+      inset 0 0 8px rgba(59, 130, 246, 0.4);
+  }
+
+  .btn-success {
+    @apply bg-green-600 text-white border-2 border-green-500;
+    box-shadow:
+      0 0 0 2px rgba(34, 197, 94, 0.1),
+      0 0 10px rgba(34, 197, 94, 0.2),
+      inset 0 0 6px rgba(34, 197, 94, 0.3);
+  }
+
+  .btn-success:hover {
+    @apply bg-green-700 border-green-400;
+    box-shadow:
+      0 0 0 2px rgba(34, 197, 94, 0.2),
+      0 0 15px rgba(34, 197, 94, 0.3),
+      inset 0 0 8px rgba(34, 197, 94, 0.4);
+  }
+
+  .btn-sm {
+    @apply px-2 py-1 text-xs;
+  }
+
+  .btn-lg {
+    @apply px-4 py-2 text-base;
+  }
+
+  .btn-icon {
+    @apply inline-flex items-center justify-center;
+  }
+
+  .btn-icon svg {
+    @apply w-3.5 h-3.5 mr-1.5;
+  }
+
+  .btn[disabled] {
+    @apply opacity-50 cursor-not-allowed;
+    box-shadow: none;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md p-4;
+  }
+
+  .input {
+    @apply bg-gray-800 border border-gray-700 rounded-md px-3 py-2;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  .pixel-input {
+    @apply bg-[#252525] border-[#333333] text-purple-200 font-mono p-2 rounded-md;
+    caret-color: transparent;
+    position: relative;
+  }
+
+  .pixel-input::after {
+    content: '_';
+    position: absolute;
+    animation: blink 1s step-end infinite;
+    color: currentColor;
+    margin-left: 1px;
+  }
+
+  .pixel-output {
+    @apply bg-[#252525] border-[#333333] text-green-200 font-mono p-2 rounded-md;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pixel-output.typing::after {
+    content: '_';
+    position: absolute;
+    animation: blink 1s step-end infinite;
+    color: currentColor;
+  }
+
+  .glitch-text {
+    position: relative;
+    animation: glitch 3s infinite;
+  }
+
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .glitch-text::before {
+    left: 2px;
+    text-shadow: -1px 0 #ff00c1;
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+  }
+
+  .glitch-text::after {
+    left: -2px;
+    text-shadow: 2px 0 #00fff9;
+    animation: glitch-anim2 3s infinite linear alternate-reverse;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+
+  7% {
+    transform: skew(-0.5deg, -0.9deg);
+    opacity: 0.75;
+  }
+
+  10% {
+    transform: none;
+    opacity: 1;
+  }
+
+  27% {
+    transform: none;
+    opacity: 1;
+  }
+
+  30% {
+    transform: skew(0.8deg, -0.1deg);
+    opacity: 0.75;
+  }
+
+  35% {
+    transform: none;
+    opacity: 1;
+  }
+
+  52% {
+    transform: none;
+    opacity: 1;
+  }
+
+  55% {
+    transform: skew(-1deg, 0.2deg);
+    opacity: 0.75;
+  }
+
+  50% {
+    transform: none;
+    opacity: 1;
+  }
+
+  72% {
+    transform: none;
+    opacity: 1;
+  }
+
+  75% {
+    transform: skew(0.4deg, 1deg);
+    opacity: 0.75;
+  }
+
+  80% {
+    transform: none;
+    opacity: 1;
+  }
+
+  100% {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(64px, 9999px, 66px, 0);
+  }
+
+  5% {
+    clip: rect(30px, 9999px, 36px, 0);
+  }
+
+  10% {
+    clip: rect(87px, 9999px, 95px, 0);
+  }
+
+  15% {
+    clip: rect(56px, 9999px, 52px, 0);
+  }
+
+  20% {
+    clip: rect(28px, 9999px, 20px, 0);
+  }
+
+  25% {
+    clip: rect(28px, 9999px, 16px, 0);
+  }
+
+  30% {
+    clip: rect(38px, 9999px, 46px, 0);
+  }
+
+  35% {
+    clip: rect(42px, 9999px, 31px, 0);
+  }
+
+  40% {
+    clip: rect(19px, 9999px, 28px, 0);
+  }
+
+  45% {
+    clip: rect(88px, 9999px, 79px, 0);
+  }
+
+  50% {
+    clip: rect(2px, 9999px, 11px, 0);
+  }
+
+  55% {
+    clip: rect(88px, 9999px, 81px, 0);
+  }
+
+  60% {
+    clip: rect(69px, 9999px, 62px, 0);
+  }
+
+  65% {
+    clip: rect(54px, 9999px, 47px, 0);
+  }
+
+  70% {
+    clip: rect(23px, 9999px, 31px, 0);
+  }
+
+  75% {
+    clip: rect(75px, 9999px, 67px, 0);
+  }
+
+  80% {
+    clip: rect(44px, 9999px, 55px, 0);
+  }
+
+  85% {
+    clip: rect(48px, 9999px, 36px, 0);
+  }
+
+  90% {
+    clip: rect(20px, 9999px, 29px, 0);
+  }
+
+  95% {
+    clip: rect(14px, 9999px, 6px, 0);
+  }
+
+  100% {
+    clip: rect(95px, 9999px, 87px, 0);
+  }
+}
+
+@keyframes glitch-anim2 {
+  0% {
+    clip: rect(52px, 9999px, 41px, 0);
+  }
+
+  5% {
+    clip: rect(21px, 9999px, 28px, 0);
+  }
+
+  10% {
+    clip: rect(94px, 9999px, 85px, 0);
+  }
+
+  15% {
+    clip: rect(62px, 9999px, 57px, 0);
+  }
+
+  20% {
+    clip: rect(33px, 9999px, 24px, 0);
+  }
+
+  25% {
+    clip: rect(15px, 9999px, 24px, 0);
+  }
+
+  30% {
+    clip: rect(44px, 9999px, 35px, 0);
+  }
+
+  35% {
+    clip: rect(55px, 9999px, 47px, 0);
+  }
+
+  40% {
+    clip: rect(71px, 9999px, 63px, 0);
+  }
+
+  45% {
+    clip: rect(82px, 9999px, 91px, 0);
+  }
+
+  50% {
+    clip: rect(15px, 9999px, 7px, 0);
+  }
+
+  55% {
+    clip: rect(92px, 9999px, 84px, 0);
+  }
+
+  60% {
+    clip: rect(73px, 9999px, 65px, 0);
+  }
+
+  65% {
+    clip: rect(51px, 9999px, 42px, 0);
+  }
+
+  70% {
+    clip: rect(37px, 9999px, 29px, 0);
+  }
+
+  75% {
+    clip: rect(86px, 9999px, 77px, 0);
+  }
+
+  80% {
+    clip: rect(42px, 9999px, 51px, 0);
+  }
+
+  85% {
+    clip: rect(57px, 9999px, 48px, 0);
+  }
+
+  90% {
+    clip: rect(28px, 9999px, 37px, 0);
+  }
+
+  95% {
+    clip: rect(9px, 9999px, 17px, 0);
+  }
+
+  100% {
+    clip: rect(99px, 9999px, 91px, 0);
+  }
+}
